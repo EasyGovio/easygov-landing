@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>EasyGov.io | Almanya Sosyal Hak Rehberi</title>
+    <meta name="description" content="Almanya'da yaşayan herkes için sosyal yardım rehberi. Hangi yardımlara hak kazandığınızı öğrenin.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="EasyGov.io | Sosyal Hak Rehberi">
+    <meta property="og:description" content="Almanya'da yaşayan herkes için sosyal yardım rehberi. Hangi yardımlara hak kazandığınızı öğrenin.">
+    <meta property="og:image" content="https://www.easygov.io/og-image.jpg">
+    <meta property="og:url" content="https://www.easygov.io">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="EasyGov.io">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EasyGov.io | Almanya Sosyal Hak Rehberi">
+    <meta name="twitter:description" content="Almanya'da hangi sosyal yardımlara hak kazandığınızı öğrenin. Ücretsiz ve gizlilik dostu.">
+    <meta name="twitter:image" content="https://www.easygov.io/og-image.jpg">
+    
+    <link rel="icon" href="https://www.easygov.io/favicon.ico">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #f4f7fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 24px 20px;
+            color: #1a2c3e;
+        }
+        .app-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .brand {
+            background: #04162E;
+            padding: 18px 28px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .brand h1 { font-weight: 600; font-size: 1.6rem; letter-spacing: -0.3px; }
+        .brand h1 span { color: #F6B45F; }
+        .badge {
+            font-size: 0.8rem;
+            background: rgba(246,180,95,0.15);
+            padding: 6px 12px;
+            border-radius: 60px;
+            color: #F6B45F;
+        }
+        .view { padding: 28px 32px; }
+        .lang-selector { display: flex; gap: 12px; justify-content: center; margin-bottom: 28px; flex-wrap: wrap; }
+        .lang-btn {
+            background: #eef2f5; border: none; padding: 8px 24px;
+            border-radius: 60px; font-weight: 600; cursor: pointer;
+            transition: 0.2s; font-size: 1rem;
+        }
+        .lang-btn.active { background: #04162E; color: white; }
+        .start-card {
+            text-align: center; background: #ffffff;
+            border-radius: 32px; padding: 32px 20px;
+            border: 1px solid #e2edf2;
+        }
+        .start-card h2 { font-size: 1.9rem; margin-bottom: 16px; color: #04162E; }
+        .start-card p { margin: 12px 0; color: #2c4b66; line-height: 1.6; }
+        .btn-primary {
+            background: #04162E; color: white; border: none;
+            padding: 14px 32px; border-radius: 60px; font-weight: 600;
+            font-size: 1rem; margin-top: 20px; cursor: pointer; transition: 0.2s;
+            display: inline-block; text-decoration: none;
+        }
+        .btn-primary:hover { background: #0a2a4a; }
+        .btn-share {
+            background: #F6B45F; color: #04162E; border: none;
+            padding: 14px 32px; border-radius: 60px; font-weight: 700;
+            font-size: 1rem; margin-top: 12px; cursor: pointer; transition: 0.2s;
+            display: block; width: 100%; text-align: center;
+        }
+        .btn-share:hover { background: #e5a44e; }
+        .btn-feedback {
+            background: transparent; color: #04162E;
+            border: 2px solid #04162E;
+            padding: 12px 28px; border-radius: 60px; font-weight: 600;
+            font-size: 0.95rem; margin-top: 12px; cursor: pointer; transition: 0.2s;
+            display: inline-block; text-decoration: none;
+        }
+        .btn-feedback:hover { background: #04162E; color: white; }
+        .btn-waitlist {
+            background: #2c6e2c; color: white; border: none;
+            padding: 12px 24px; border-radius: 60px; font-weight: 600;
+            font-size: 0.9rem; cursor: pointer; transition: 0.2s;
+            margin-left: 10px;
+        }
+        .btn-waitlist:hover { background: #1e4f1e; }
+        .waitlist-input {
+            padding: 12px 16px;
+            border-radius: 60px;
+            border: 2px solid #cad2db;
+            font-size: 0.9rem;
+            flex: 1;
+            min-width: 180px;
+        }
+        .progress-area {
+            background: #e9edf2; border-radius: 40px;
+            height: 8px; width: 100%; margin: 16px 0 8px;
+        }
+        .progress-fill {
+            background: #F6B45F; width: 0%; height: 8px;
+            border-radius: 40px; transition: width 0.25s ease;
+        }
+        .q-counter { font-size: 0.85rem; color: #5b7a97; margin-bottom: 24px; }
+        .question-text {
+            font-size: 1.25rem; font-weight: 500; line-height: 1.5;
+            margin: 24px 0; background: #f9fbfd; padding: 20px;
+            border-radius: 20px; border-left: 5px solid #F6B45F;
+        }
+        .options { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 28px; }
+        .option {
+            background: #f0f4f9; padding: 12px 20px; border-radius: 12px;
+            cursor: pointer; transition: 0.15s; font-size: 0.95rem;
+            font-weight: 500; border: 2px solid transparent; text-align: left;
+        }
+        .option:hover { border-color: #F6B45F; background: #fef9f0; }
+        .option.selected { background: #04162E; color: white; border-color: #F6B45F; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 20px; gap: 12px; }
+        .btn-nav {
+            background: transparent; border: 2px solid #cad2db;
+            padding: 12px 28px; border-radius: 40px; font-weight: 600;
+            cursor: pointer; transition: 0.15s; font-size: 0.95rem;
+        }
+        .btn-nav:hover { border-color: #04162E; }
+        .btn-nav:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-next { background: #04162E; color: white; border-color: #04162E; }
+        .btn-next:hover { background: #0a2a4a; }
+        .warning { color: #c0392b; font-size: 0.85rem; margin-top: 10px; min-height: 20px; }
+        .result-card {
+            background: #f8fafc; border-radius: 24px; padding: 24px;
+            margin: 20px 0;
+        }
+        .result-card h3 {
+            color: #04162E;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+        }
+        .benefit-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+        .benefit-list li {
+            background: white;
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 12px;
+            border-left: 4px solid #F6B45F;
+        }
+        .disclaimer {
+            font-size: 0.75rem;
+            color: #5f7f9a;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .waitlist-container {
+            background: rgba(4,22,46,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .waitlist-container h4 {
+            color: #04162E;
+            margin-bottom: 12px;
+        }
+        .waitlist-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+        .share-section {
+            text-align: center; padding: 24px 20px;
+            background: rgba(246,180,95,0.08); border-radius: 24px;
+            margin-top: 20px;
+        }
+        .footer-note {
+            font-size: 0.7rem; text-align: center; margin-top: 24px;
+            color: #5f7f9a; border-top: 1px solid #e2edf2; padding-top: 20px;
+        }
+        @media (max-width: 620px) {
+            body { padding: 12px; }
+            .view { padding: 20px 16px; }
+            .question-text { font-size: 1.1rem; padding: 16px; }
+            .waitlist-form { flex-direction: column; align-items: center; }
+            .btn-waitlist { margin-left: 0; margin-top: 8px; }
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <div class="brand">
+        <h1>Easy<span>Gov</span>.io</h1>
+        <div class="badge">⚖️ PACDI | Almanya Sosyal Haklar</div>
+    </div>
+    <div id="dynamicView" class="view"></div>
+</div>
+<script>
+// Dil verileri - GÜNCELLENMİŞ ALMANCA METİNLER
+var texts = {
+    tr: {
+        title: "Almanya'da Sosyal Hak Rehberi",
+        desc: "Hangi yardımlara hak kazandığınızı öğrenin. 5 dakikada sonuç.",
+        start: "Başla",
+        lang_choose: "Dil Seçin",
+        questions: [
+            { text: "Almanya'da ikamet ediyor musunuz?", type: "yesno", benefit: "all" },
+            { text: "Aylık geliriniz (net) 1.000 €'nun altında mı?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Çalışma yeteneğiniz kısıtlı veya işsiz misiniz?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Kira yardımı (Wohngeld) için başvurmak istiyor musunuz? (Kiranız yüksek)", type: "yesno", benefit: "wohngeld" },
+            { text: "18 yaş altı çocuğunuz var mı?", type: "yesno", benefit: "kindergeld" },
+            { text: "Çocuğunuz için ek eğitim veya katılım desteği almak ister misiniz? (Bildung und Teilhabe)", type: "yesno", benefit: "buth" },
+            { text: "Hamile misiniz veya 3 yaş altı çocuğunuz var mı?", type: "yesno", benefit: "eltern" }
+        ],
+        results: {
+            bürgergeld: "Bürgergeld (İşsizlik Yardımı)",
+            wohngeld: "Wohngeld (Kira Yardımı)",
+            kindergeld: "Kindergeld (Çocuk Parası)",
+            buth: "Bildung und Teilhabe (Eğitim ve Katılım Desteği)",
+            eltern: "Elterngeld / Mutterschaftsgeld (Ebeveyn / Annelik Parası)"
+        },
+        docs: {
+            bürgergeld: "Kimlik, ikamet belgesi, gelir beyanı, kira sözleşmesi, banka hesap bilgileri",
+            wohngeld: "Kimlik, kira sözleşmesi, gelir belgesi, kişi sayısı",
+            kindergeld: "Çocuğun doğum belgesi, kimlik, banka bilgileri",
+            buth: "Çocuğun okul/anaokulu kaydı, gelir belgesi, kimlik",
+            eltern: "Doğum belgesi, gelir belgesi, işveren onayı (varsa)"
+        },
+        no_result: "Girdiğiniz bilgilere göre şu anda belirlenen yardımlardan birine hak kazanmıyor olabilirsiniz. Yine de ilgili kurumlarla iletişime geçmeniz önerilir.",
+        next: "İleri →",
+        back: "← Geri",
+        finish: "Sonuçları Göster",
+        share_title: "EasyGov.io | Almanya Sosyal Hak Rehberi",
+        share_text_prefix: "Almanya'da ",
+        share_text_suffix: " hakkım olduğunu öğrendim! Sen de dene:",
+        share_text_fallback: "Almanya'da hangi sosyal yardımlara hak kazandığımı öğrendim. Sen de dene!",
+        feedback: "Geri Bildirim Gönder",
+        share: "Testi Paylaş",
+        recommend: "Arkadaşlarına da öner!",
+        waitlist_title: "Uygulama çıkınca haber al",
+        waitlist_placeholder: "E-posta adresiniz",
+        waitlist_button: "Listeye Katıl",
+        waitlist_success: "Teşekkürler! Size ulaşacağız.",
+        waitlist_error: "Geçerli bir e-posta adresi girin.",
+        beta_note: "Yakında mobil uygulama — beta listesine katıl"
+    },
+    de: {
+        title: "Sozialleistungen in Deutschland",
+        desc: "Finden Sie heraus, welche staatlichen Leistungen Ihnen zustehen. In 5 Minuten zum Ergebnis.",
+        start: "Starten",
+        lang_choose: "Sprache wählen",
+        questions: [
+            { text: "Haben Sie Ihren gewöhnlichen Aufenthalt in Deutschland?", type: "yesno", benefit: "all" },
+            { text: "Liegt Ihr monatliches Nettoeinkommen unter 1.000 €?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Sind Sie arbeitslos oder in Ihrer Erwerbsfähigkeit eingeschränkt?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Möchten Sie Wohngeld (Mietzuschuss) beantragen? (z.B. wegen hoher Miete)", type: "yesno", benefit: "wohngeld" },
+            { text: "Haben Sie Kinder unter 18 Jahren?", type: "yesno", benefit: "kindergeld" },
+            { text: "Möchten Sie für Ihr Kind Leistungen für Bildung und Teilhabe (BuT) beantragen?", type: "yesno", benefit: "buth" },
+            { text: "Sind Sie schwanger oder haben Sie ein Kind unter 3 Jahren?", type: "yesno", benefit: "eltern" }
+        ],
+        results: {
+            bürgergeld: "Bürgergeld (Arbeitslosengeld II)",
+            wohngeld: "Wohngeld (Mietzuschuss)",
+            kindergeld: "Kindergeld",
+            buth: "Bildung und Teilhabe (BuT)",
+            eltern: "Elterngeld / Mutterschaftsgeld"
+        },
+        docs: {
+            bürgergeld: "Personalausweis, Meldebescheinigung, Einkommensnachweise, Mietvertrag, Bankverbindung",
+            wohngeld: "Personalausweis, Mietvertrag, Einkommensnachweise, Anzahl der Haushaltsmitglieder",
+            kindergeld: "Geburtsurkunde des Kindes, Personalausweis, Bankverbindung",
+            buth: "Schul- oder Kitabescheinigung, Einkommensnachweis, Personalausweis",
+            eltern: "Geburtsurkunde, Einkommensnachweise, ggf. Arbeitgeberbescheinigung"
+        },
+        no_result: "Nach Ihren Angaben haben Sie derzeit keinen Anspruch auf die genannten Leistungen. Wir empfehlen dennoch eine Rücksprache mit den zuständigen Behörden, da Einzelfallprüfungen möglich sind.",
+        next: "Weiter →",
+        back: "← Zurück",
+        finish: "Ergebnisse anzeigen",
+        share_title: "EasyGov.io | Sozialleistungen in Deutschland",
+        share_text_prefix: "In Deutschland habe ich Anspruch auf ",
+        share_text_suffix: "! Probier es auch:",
+        share_text_fallback: "Ich habe herausgefunden, welche Sozialleistungen mir in Deutschland zustehen. Probier es auch!",
+        feedback: "Feedback senden",
+        share: "Test teilen",
+        recommend: "Freunden empfehlen!",
+        waitlist_title: "Benachrichtigung zum App-Start",
+        waitlist_placeholder: "Ihre E-Mail-Adresse",
+        waitlist_button: "Auf die Liste setzen",
+        waitlist_success: "Vielen Dank! Wir melden uns.",
+        waitlist_error: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        beta_note: "Bald als mobile App — Beta-Liste beitreten"
+    },
+    en: {
+        title: "Social Benefits Guide in Germany",
+        desc: "Find out which social benefits you may be entitled to. 5 minutes to results.",
+        start: "Start",
+        lang_choose: "Select Language",
+        questions: [
+            { text: "Do you reside in Germany?", type: "yesno", benefit: "all" },
+            { text: "Is your monthly net income below €1,000?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Are you unemployed or limited in your ability to work?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Do you want to apply for housing benefit (Wohngeld)? (high rent)", type: "yesno", benefit: "wohngeld" },
+            { text: "Do you have children under 18?", type: "yesno", benefit: "kindergeld" },
+            { text: "Do you want to apply for education and participation support for your child?", type: "yesno", benefit: "buth" },
+            { text: "Are you pregnant or have a child under 3?", type: "yesno", benefit: "eltern" }
+        ],
+        results: {
+            bürgergeld: "Bürgergeld (Unemployment Benefit II)",
+            wohngeld: "Wohngeld (Housing Benefit)",
+            kindergeld: "Child Benefit",
+            buth: "Education and Participation (BuT)",
+            eltern: "Parental Allowance / Maternity Benefit"
+        },
+        docs: {
+            bürgergeld: "ID, registration certificate, proof of income, rental contract, bank details",
+            wohngeld: "ID, rental contract, proof of income, household size",
+            kindergeld: "Birth certificate, ID, bank details",
+            buth: "School/kindergarten certificate, proof of income, ID",
+            eltern: "Birth certificate, proof of income, employer statement (if applicable)"
+        },
+        no_result: "Based on your answers, you may not currently qualify for the listed benefits. However, we recommend contacting the relevant authorities.",
+        next: "Next →",
+        back: "← Back",
+        finish: "Show Results",
+        share_title: "EasyGov.io | Social Benefits in Germany",
+        share_text_prefix: "In Germany, I am entitled to ",
+        share_text_suffix: "! Try it too:",
+        share_text_fallback: "I found out which social benefits I qualify for in Germany. Try it too!",
+        feedback: "Send Feedback",
+        share: "Share Test",
+        recommend: "Recommend to friends!",
+        waitlist_title: "Get notified when the app launches",
+        waitlist_placeholder: "Your email address",
+        waitlist_button: "Join Waitlist",
+        waitlist_success: "Thank you! We'll be in touch.",
+        waitlist_error: "Please enter a valid email address.",
+        beta_note: "Mobile app coming soon — join the beta list"
+    }
+};
+
+var lang = "tr";
+var state = "lang";
+var answers = [];
+var curQ = 0;
+var benefits = [];
+
+function getView() { return document.getElementById("dynamicView"); }
+
+function detectLanguage() {
+    var userLang = navigator.language || navigator.userLanguage;
+    if (userLang.indexOf("tr") === 0) return "tr";
+    if (userLang.indexOf("de") === 0) return "de";
+    return "en";
+}
+
+function render() {
+    var v = getView();
+    if (!v) return;
+    if (state === "lang") renderLang(v);
+    else if (state === "quiz") renderQuiz(v);
+    else if (state === "result") renderResult(v);
+    window.scrollTo(0,0);
+}
+
+function renderLang(v) {
+    var current = texts[lang];
+    var html = '<div class="lang-selector">' +
+        '<button class="lang-btn ' + (lang === 'tr' ? 'active' : '') + '" onclick="setLang(\'tr\')">🇹🇷 TÜRKÇE</button>' +
+        '<button class="lang-btn ' + (lang === 'de' ? 'active' : '') + '" onclick="setLang(\'de\')">🇩🇪 DEUTSCH</button>' +
+        '<button class="lang-btn ' + (lang === 'en' ? 'active' : '') + '" onclick="setLang(\'en\')">🇬🇧 ENGLISH</button>' +
+        '</div>' +
+        '<div class="start-card">' +
+        '<h2>⚖️ ' + current.title + '</h2>' +
+        '<p>' + current.desc + '</p>' +
+        '<button class="btn-primary" onclick="startQuiz()">' + current.start + '</button>' +
+        '</div>';
+    v.innerHTML = html;
+}
+
+function setLang(l) { lang = l; render(); }
+
+function startQuiz() {
+    state = "quiz";
+    curQ = 0;
+    answers = [];
+    for (var i = 0; i < texts[lang].questions.length; i++) answers.push(null);
+    benefits = [];
+    render();
+}
+
+function renderQuiz(v) {
+    var t = texts[lang];
+    var q = t.questions[curQ];
+    var currentAnswer = answers[curQ];
+    var total = t.questions.length;
+    var pct = (curQ / total) * 100;
+    var isLast = curQ === total - 1;
+    var nextLabel = isLast ? t.finish : t.next;
+    
+    var optsHtml = '<div class="options">' +
+        '<div class="option' + (currentAnswer === true ? ' selected' : '') + '" onclick="answer(true)">✅ ' + (lang === "tr" ? "Evet" : (lang === "de" ? "Ja" : "Yes")) + '</div>' +
+        '<div class="option' + (currentAnswer === false ? ' selected' : '') + '" onclick="answer(false)">❌ ' + (lang === "tr" ? "Hayır" : (lang === "de" ? "Nein" : "No")) + '</div>' +
+        '</div>';
+    
+    var html = '<div class="progress-area"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
+        '<div class="q-counter">' + (curQ+1) + ' / ' + total + '</div>' +
+        '<div class="question-text">' + q.text + '</div>' +
+        optsHtml +
+        '<div class="nav-buttons">' +
+        '<button class="btn-nav" onclick="prevQuestion()"' + (curQ === 0 ? ' disabled' : '') + '>' + t.back + '</button>' +
+        '<button class="btn-nav btn-next" onclick="nextQuestion()">' + nextLabel + '</button>' +
+        '</div>' +
+        '<div class="warning" id="warn"></div>';
+    v.innerHTML = html;
+}
+
+function answer(val) {
+    answers[curQ] = val;
+    render();
+}
+
+function prevQuestion() {
+    if (curQ > 0) {
+        curQ--;
+        render();
+    }
+}
+
+function nextQuestion() {
+    if (answers[curQ] === null) {
+        var warn = document.getElementById("warn");
+        if (warn) warn.textContent = lang === "tr" ? "Lütfen bir cevap seçin." : (lang === "de" ? "Bitte wählen Sie eine Antwort." : "Please select an answer.");
+        return;
+    }
+    var t = texts[lang];
+    if (curQ === t.questions.length - 1) {
+        benefits = [];
+        for (var i = 0; i < t.questions.length; i++) {
+            var q = t.questions[i];
+            if (answers[i] === true && q.benefit && q.benefit !== "all") {
+                if (benefits.indexOf(q.benefit) === -1) benefits.push(q.benefit);
+            }
+        }
+        if (answers[0] === false) benefits = [];
+        state = "result";
+        render();
+    } else {
+        curQ++;
+        render();
+    }
+}
+
+function generateShareText() {
+    var t = texts[lang];
+    if (benefits.length > 0) {
+        var benefitNames = [];
+        for (var i = 0; i < benefits.length; i++) {
+            benefitNames.push(t.results[benefits[i]]);
+        }
+        var listStr = benefitNames.join(", ");
+        return t.share_text_prefix + listStr + t.share_text_suffix;
+    } else {
+        return t.share_text_fallback;
+    }
+}
+
+function shareResult() {
+    var t = texts[lang];
+    var shareText = generateShareText();
+    var fullText = shareText + " " + window.location.href;
+    if (navigator.share) {
+        navigator.share({
+            title: t.share_title,
+            text: shareText,
+            url: window.location.href
+        });
+    } else {
+        navigator.clipboard.writeText(fullText).then(function() {
+            alert(lang === "tr" ? "Link kopyalandı!" : (lang === "de" ? "Link kopiert!" : "Link copied!"));
+        }).catch(function() {
+            alert(lang === "tr" ? "Paylaşım başarısız." : (lang === "de" ? "Teilen fehlgeschlagen." : "Sharing failed."));
+        });
+    }
+}
+
+function submitWaitlist() {
+    var emailInput = document.getElementById("waitlist-email");
+    if (!emailInput) return;
+    var email = emailInput.value.trim();
+    if (!email || email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+        alert(texts[lang].waitlist_error);
+        return;
+    }
+    var subject = encodeURIComponent("Waitlist: " + email);
+    var body = encodeURIComponent("I would like to join the EasyGov.io waitlist.\nEmail: " + email);
+    window.location.href = "mailto:info@easygov.io?subject=" + subject + "&body=" + body;
+    alert(texts[lang].waitlist_success);
+    emailInput.value = "";
+}
+
+function renderResult(v) {
+    var t = texts[lang];
+    var hasBenefits = benefits.length > 0;
+    var benefitsHtml = "";
+    if (hasBenefits) {
+        var listItems = "";
+        for (var i = 0; i < benefits.length; i++) {
+            var b = benefits[i];
+            listItems += '<li><strong>' + t.results[b] + '</strong><br><small>📄 ' + t.docs[b] + '</small></li>';
+        }
+        benefitsHtml = '<ul class="benefit-list">' + listItems + '</ul>';
+    } else {
+        benefitsHtml = '<p>' + t.no_result + '</p>';
+    }
+    
+    var waitlistHtml = '<div class="waitlist-container">' +
+        '<h4>📧 ' + t.waitlist_title + '</h4>' +
+        '<div class="waitlist-form">' +
+        '<input type="email" id="waitlist-email" class="waitlist-input" placeholder="' + t.waitlist_placeholder + '">' +
+        '<button class="btn-waitlist" onclick="submitWaitlist()">' + t.waitlist_button + '</button>' +
+        '</div>' +
+        '</div>';
+    
+    var html = '<div class="result-card">' +
+        '<h3>📋 ' + (lang === "tr" ? "Sonuçlarınız" : (lang === "de" ? "Ihre Ergebnisse" : "Your Results")) + '</h3>' +
+        benefitsHtml +
+        '</div>' +
+        '<div class="share-section">' +
+        '<p>📣 ' + t.recommend + '</p>' +
+        '<button class="btn-share" onclick="shareResult()">📢 ' + t.share + '</button>' +
+        '<div style="margin-top:12px">' +
+        '<a class="btn-feedback" href="mailto:info@easygov.io?subject=EasyGov.io%20Feedback">📧 ' + t.feedback + '</a>' +
+        '</div>' +
+        '</div>' +
+        waitlistHtml +
+        '<div class="disclaimer">' +
+        'ℹ️ ' + (lang === "tr" ? "Bu bilgiler yalnızca bilgilendirme amaçlıdır ve resmi bir başvuru yerine geçmez. Kesin hak durumu için ilgili kurumlarla iletişime geçin." :
+                   lang === "de" ? "Diese Informationen dienen nur zur Orientierung und ersetzen keine offizielle Beratung. Für verbindliche Auskünfte wenden Sie sich bitte an die zuständigen Stellen." :
+                   "This information is for guidance only and does not replace official advice. Please contact the relevant authorities for definitive eligibility.") +
+        '</div>' +
+        '<div class="footer-note">' +
+        '🚀 ' + t.beta_note + '<br>' +
+        '© 2026 PACDI — easygov.io · info@easygov.io<br>' +
+        'Datenschutzfreundlich · Keine Speicherung personenbezogener Daten' +
+        '</div>';
+    v.innerHTML = html;
+}
+
+lang = detectLanguage();
+state = "lang";
+document.addEventListener("DOMContentLoaded", render);
+</script>
+</body>
+</html>
