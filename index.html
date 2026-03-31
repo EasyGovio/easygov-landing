@@ -510,7 +510,7 @@ function submitWaitlist() {
     }
     var subject = encodeURIComponent("Waitlist: " + email);
     var body = encodeURIComponent("I would like to join the EasyGov.io waitlist.\nEmail: " + email);
-    window.location.href = "mailto: info@navigopro.de?subject=" + subject + "&body=" + body;
+    window.location.href = "mailto:info@navigopro.de?subject=" + subject + "&body=" + body;
     alert(texts[lang].waitlist_success);
     emailInput.value = "";
 }
