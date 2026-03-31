@@ -510,7 +510,7 @@ function submitWaitlist() {
     }
     var subject = encodeURIComponent("Waitlist: " + email);
     var body = encodeURIComponent("I would like to join the EasyGov.io waitlist.\nEmail: " + email);
-    window.location.href = "mailto:info@easygov.io?subject=" + subject + "&body=" + body;
+    window.location.href = "mailto: info@navigopro.de?subject=" + subject + "&body=" + body;
     alert(texts[lang].waitlist_success);
     emailInput.value = "";
 }
@@ -546,7 +546,7 @@ function renderResult(v) {
         '<p>📣 ' + t.recommend + '</p>' +
         '<button class="btn-share" onclick="shareResult()">📢 ' + t.share + '</button>' +
         '<div style="margin-top:12px">' +
-        '<a class="btn-feedback" href="mailto:info@easygov.io?subject=EasyGov.io%20Feedback">📧 ' + t.feedback + '</a>' +
+        '<a class="btn-feedback" href="mailto:info@navigopro.de?subject=EasyGov.io%20Feedback">📧 ' + t.feedback + '</a>' +
         '</div>' +
         '</div>' +
         waitlistHtml +
@@ -557,7 +557,7 @@ function renderResult(v) {
         '</div>' +
         '<div class="footer-note">' +
         '🚀 ' + t.beta_note + '<br>' +
-        '© 2026 PACDI — easygov.io · info@easygov.io<br>' +
+        '© 2026 PACDI — easygov.io · info@navigopro.de<br>' +
         'Datenschutzfreundlich · Keine Speicherung personenbezogener Daten' +
         '</div>';
     v.innerHTML = html;
