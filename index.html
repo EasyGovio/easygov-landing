@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>NavigoPro | PACDI Kariyer Değerlendirme</title>
-
+    <title>EasyGov.io | Almanya Sosyal Hak Rehberi</title>
+    <meta name="description" content="Almanya'da yaşayan herkes için sosyal yardım rehberi. Hangi yardımlara hak kazandığınızı öğrenin.">
+    
     <!-- Open Graph -->
-    <meta property="og:title" content="NavigoPro | PACDI Kariyer Değerlendirme" />
-    <meta property="og:description" content="6 modül, 90 soru ile kariyer profilinizi keşfedin. Ücretsiz, 3 dilde, kişisel rapor." />
-    <meta property="og:image" content="https://www.navigopro.de/og-image.jpg" />
-    <meta property="og:url" content="https://www.navigopro.de" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="NavigoPro | PACDI" />
-
+    <meta property="og:title" content="EasyGov.io | Sosyal Hak Rehberi">
+    <meta property="og:description" content="Almanya'da yaşayan herkes için sosyal yardım rehberi. Hangi yardımlara hak kazandığınızı öğrenin.">
+    <meta property="og:image" content="https://www.easygov.io/og-image.jpg">
+    <meta property="og:url" content="https://www.easygov.io">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="EasyGov.io">
+    
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="NavigoPro | PACDI Kariyer Değerlendirme" />
-    <meta name="twitter:description" content="Kariyer yolculuğunda rehberiniz. 3 dilde, 6 modül, 90 soru – hemen dene!" />
-    <meta name="twitter:image" content="https://www.navigopro.de/og-image.jpg" />
-
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EasyGov.io | Almanya Sosyal Hak Rehberi">
+    <meta name="twitter:description" content="Almanya'da hangi sosyal yardımlara hak kazandığınızı öğrenin. Ücretsiz ve gizlilik dostu.">
+    <meta name="twitter:image" content="https://www.easygov.io/og-image.jpg">
+    
+    <link rel="icon" href="https://www.easygov.io/favicon.ico">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -28,7 +31,7 @@
             color: #1a2c3e;
         }
         .app-container {
-            max-width: 900px;
+            max-width: 700px;
             margin: 0 auto;
             background: white;
             border-radius: 40px;
@@ -91,12 +94,21 @@
             display: inline-block; text-decoration: none;
         }
         .btn-feedback:hover { background: #04162E; color: white; }
-        .module-header {
-            display: flex; align-items: center; gap: 14px;
-            margin-bottom: 24px; flex-wrap: wrap; justify-content: space-between;
+        .btn-waitlist {
+            background: #2c6e2c; color: white; border: none;
+            padding: 12px 24px; border-radius: 60px; font-weight: 600;
+            font-size: 0.9rem; cursor: pointer; transition: 0.2s;
+            margin-left: 10px;
         }
-        .module-icon { font-size: 2.2rem; }
-        .module-title { font-size: 1.5rem; font-weight: 700; }
+        .btn-waitlist:hover { background: #1e4f1e; }
+        .waitlist-input {
+            padding: 12px 16px;
+            border-radius: 60px;
+            border: 2px solid #cad2db;
+            font-size: 0.9rem;
+            flex: 1;
+            min-width: 180px;
+        }
         .progress-area {
             background: #e9edf2; border-radius: 40px;
             height: 8px; width: 100%; margin: 16px 0 8px;
@@ -130,70 +142,55 @@
         .btn-next { background: #04162E; color: white; border-color: #04162E; }
         .btn-next:hover { background: #0a2a4a; }
         .warning { color: #c0392b; font-size: 0.85rem; margin-top: 10px; min-height: 20px; }
-        .inter-card { text-align: center; padding: 20px 0; }
-        .inter-card h3 { font-size: 1.4rem; margin-bottom: 8px; color: #04162E; }
-        .score-circle {
-            font-size: 3rem; font-weight: 800; background: #f0f3f8;
-            width: 130px; height: 130px; line-height: 130px;
-            border-radius: 50%; margin: 20px auto; color: #04162E;
+        .result-card {
+            background: #f8fafc; border-radius: 24px; padding: 24px;
+            margin: 20px 0;
         }
-        .motivation { font-style: italic; margin: 20px 0; color: #2c4b66; font-size: 1.1rem; }
-        .report-grid { display: flex; flex-direction: column; gap: 24px; }
-        .bars-container { background: #f8fafc; border-radius: 24px; padding: 20px; }
-        .bars-container h3 { margin-bottom: 16px; color: #04162E; }
-        .bar-item { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
-        .bar-label { width: 140px; font-weight: 600; font-size: 0.85rem; line-height: 1.3; }
-        .bar-bg { flex: 1; background: #e2e8f0; border-radius: 20px; height: 24px; overflow: hidden; }
-        .bar-fill {
-            height: 24px; width: 0%; background: #04162E;
-            border-radius: 20px; transition: width 0.8s ease-out;
+        .result-card h3 {
+            color: #04162E;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
         }
-        .bar-score { font-weight: 700; font-size: 0.9rem; width: 36px; text-align: right; }
-        .radar-container { background: #fff; border-radius: 24px; padding: 20px; text-align: center; }
-        .radar-container h3 { margin-bottom: 12px; color: #04162E; }
-        canvas { max-width: 100%; border-radius: 16px; }
-        .profile-card {
-            background: rgba(4,22,46,0.05); padding: 24px;
-            border-radius: 24px; border-left: 6px solid #F6B45F;
+        .benefit-list {
+            list-style: none;
+            margin: 12px 0;
         }
-        .profile-card h3 { margin-bottom: 12px; color: #04162E; }
-        .profile-name { font-size: 1.4rem; font-weight: 700; color: #04162E; margin-bottom: 8px; }
-        .profile-score { color: #5b7a97; margin-bottom: 16px; }
-        .special-cards-container {
-            margin: 20px 0 24px;
-            background: rgba(246,180,95,0.08);
-            border-radius: 28px;
-            padding: 16px 20px;
+        .benefit-list li {
+            background: white;
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 12px;
+            border-left: 4px solid #F6B45F;
         }
-        .special-cards-container h3 {
-            font-size: 1.2rem; margin-bottom: 16px; color: #04162E;
+        .disclaimer {
+            font-size: 0.75rem;
+            color: #5f7f9a;
+            margin-top: 20px;
+            text-align: center;
         }
-        .special-card {
-            background: white; border-radius: 20px; padding: 18px 20px;
-            margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-left: 8px solid #F6B45F; display: flex;
-            align-items: center; gap: 14px; transition: transform 0.2s;
+        .waitlist-container {
+            background: rgba(4,22,46,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
         }
-        .special-card:last-child { margin-bottom: 0; }
-        .special-card:hover { transform: translateX(5px); }
-        .special-card-icon {
-            font-size: 2rem; background: #f0f3f8; width: 48px; height: 48px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 60px; flex-shrink: 0;
+        .waitlist-container h4 {
+            color: #04162E;
+            margin-bottom: 12px;
         }
-        .special-card-content { flex: 1; }
-        .special-card-title { font-weight: 800; font-size: 1.1rem; color: #04162E; margin-bottom: 4px; }
-        .special-card-desc { font-size: 0.85rem; color: #5b7a97; }
-        .career-list { list-style: none; margin-top: 12px; }
-        .career-list li {
-            padding: 10px 14px; background: white; border-radius: 10px;
-            margin: 6px 0; border-left: 3px solid #F6B45F; font-size: 0.9rem;
+        .waitlist-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 12px;
         }
         .share-section {
             text-align: center; padding: 24px 20px;
             background: rgba(246,180,95,0.08); border-radius: 24px;
+            margin-top: 20px;
         }
-        .share-section p { color: #2c4b66; margin-bottom: 12px; font-size: 1rem; font-weight: 500; }
         .footer-note {
             font-size: 0.7rem; text-align: center; margin-top: 24px;
             color: #5f7f9a; border-top: 1px solid #e2edf2; padding-top: 20px;
@@ -202,439 +199,372 @@
             body { padding: 12px; }
             .view { padding: 20px 16px; }
             .question-text { font-size: 1.1rem; padding: 16px; }
-            .bar-label { width: 100px; font-size: 0.78rem; }
-            .module-title { font-size: 1.2rem; }
-            .special-card { padding: 12px 16px; }
-            .special-card-icon { width: 40px; height: 40px; font-size: 1.5rem; }
+            .waitlist-form { flex-direction: column; align-items: center; }
+            .btn-waitlist { margin-left: 0; margin-top: 8px; }
         }
     </style>
 </head>
 <body>
 <div class="app-container">
     <div class="brand">
-        <h1>Navigo<span>Pro</span> &middot; PACDI</h1>
-        <div class="badge">&#8482; TÜRKPATENT | kariyer pusulası</div>
+        <h1>Easy<span>Gov</span>.io</h1>
+        <div class="badge">⚖️ PACDI | Almanya Sosyal Haklar</div>
     </div>
     <div id="dynamicView" class="view"></div>
 </div>
 <script>
-var MODULE_NAMES = {
-    tr: ["Karakter & Değerler","Bilişsel Yetkinlik","Mesleki Tutku & Eğilim","Sosyal Adalet & Etik","Handwerk & Zanaat","Kişisel Refah & Sağlık"],
-    en: ["Character & Values","Cognitive Competence","Professional Passion","Social Justice & Ethics","Craft & Handwerk","Personal Wellbeing & Health"],
-    de: ["Charakter & Werte","Kognitive Fähigkeiten","Berufliche Leidenschaft","Soziale Ethik & Verantwortung","Handwerk & Fachkompetenz","Wohlbefinden & Lebensqualität"]
+// Dil verileri - GÜNCELLENMİŞ ALMANCA METİNLER
+var texts = {
+    tr: {
+        title: "Almanya'da Sosyal Hak Rehberi",
+        desc: "Hangi yardımlara hak kazandığınızı öğrenin. 5 dakikada sonuç.",
+        start: "Başla",
+        lang_choose: "Dil Seçin",
+        questions: [
+            { text: "Almanya'da ikamet ediyor musunuz?", type: "yesno", benefit: "all" },
+            { text: "Aylık geliriniz (net) 1.000 €'nun altında mı?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Çalışma yeteneğiniz kısıtlı veya işsiz misiniz?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Kira yardımı (Wohngeld) için başvurmak istiyor musunuz? (Kiranız yüksek)", type: "yesno", benefit: "wohngeld" },
+            { text: "18 yaş altı çocuğunuz var mı?", type: "yesno", benefit: "kindergeld" },
+            { text: "Çocuğunuz için ek eğitim veya katılım desteği almak ister misiniz? (Bildung und Teilhabe)", type: "yesno", benefit: "buth" },
+            { text: "Hamile misiniz veya 3 yaş altı çocuğunuz var mı?", type: "yesno", benefit: "eltern" }
+        ],
+        results: {
+            bürgergeld: "Bürgergeld (İşsizlik Yardımı)",
+            wohngeld: "Wohngeld (Kira Yardımı)",
+            kindergeld: "Kindergeld (Çocuk Parası)",
+            buth: "Bildung und Teilhabe (Eğitim ve Katılım Desteği)",
+            eltern: "Elterngeld / Mutterschaftsgeld (Ebeveyn / Annelik Parası)"
+        },
+        docs: {
+            bürgergeld: "Kimlik, ikamet belgesi, gelir beyanı, kira sözleşmesi, banka hesap bilgileri",
+            wohngeld: "Kimlik, kira sözleşmesi, gelir belgesi, kişi sayısı",
+            kindergeld: "Çocuğun doğum belgesi, kimlik, banka bilgileri",
+            buth: "Çocuğun okul/anaokulu kaydı, gelir belgesi, kimlik",
+            eltern: "Doğum belgesi, gelir belgesi, işveren onayı (varsa)"
+        },
+        no_result: "Girdiğiniz bilgilere göre şu anda belirlenen yardımlardan birine hak kazanmıyor olabilirsiniz. Yine de ilgili kurumlarla iletişime geçmeniz önerilir.",
+        next: "İleri →",
+        back: "← Geri",
+        finish: "Sonuçları Göster",
+        share_title: "EasyGov.io | Almanya Sosyal Hak Rehberi",
+        share_text_prefix: "Almanya'da ",
+        share_text_suffix: " hakkım olduğunu öğrendim! Sen de dene:",
+        share_text_fallback: "Almanya'da hangi sosyal yardımlara hak kazandığımı öğrendim. Sen de dene!",
+        feedback: "Geri Bildirim Gönder",
+        share: "Testi Paylaş",
+        recommend: "Arkadaşlarına da öner!",
+        waitlist_title: "Uygulama çıkınca haber al",
+        waitlist_placeholder: "E-posta adresiniz",
+        waitlist_button: "Listeye Katıl",
+        waitlist_success: "Teşekkürler! Size ulaşacağız.",
+        waitlist_error: "Geçerli bir e-posta adresi girin.",
+        beta_note: "Yakında mobil uygulama — beta listesine katıl"
+    },
+    de: {
+        title: "Sozialleistungen in Deutschland",
+        desc: "Finden Sie heraus, welche staatlichen Leistungen Ihnen zustehen. In 5 Minuten zum Ergebnis.",
+        start: "Starten",
+        lang_choose: "Sprache wählen",
+        questions: [
+            { text: "Haben Sie Ihren gewöhnlichen Aufenthalt in Deutschland?", type: "yesno", benefit: "all" },
+            { text: "Liegt Ihr monatliches Nettoeinkommen unter 1.000 €?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Sind Sie arbeitslos oder in Ihrer Erwerbsfähigkeit eingeschränkt?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Möchten Sie Wohngeld (Mietzuschuss) beantragen? (z.B. wegen hoher Miete)", type: "yesno", benefit: "wohngeld" },
+            { text: "Haben Sie Kinder unter 18 Jahren?", type: "yesno", benefit: "kindergeld" },
+            { text: "Möchten Sie für Ihr Kind Leistungen für Bildung und Teilhabe (BuT) beantragen?", type: "yesno", benefit: "buth" },
+            { text: "Sind Sie schwanger oder haben Sie ein Kind unter 3 Jahren?", type: "yesno", benefit: "eltern" }
+        ],
+        results: {
+            bürgergeld: "Bürgergeld (Arbeitslosengeld II)",
+            wohngeld: "Wohngeld (Mietzuschuss)",
+            kindergeld: "Kindergeld",
+            buth: "Bildung und Teilhabe (BuT)",
+            eltern: "Elterngeld / Mutterschaftsgeld"
+        },
+        docs: {
+            bürgergeld: "Personalausweis, Meldebescheinigung, Einkommensnachweise, Mietvertrag, Bankverbindung",
+            wohngeld: "Personalausweis, Mietvertrag, Einkommensnachweise, Anzahl der Haushaltsmitglieder",
+            kindergeld: "Geburtsurkunde des Kindes, Personalausweis, Bankverbindung",
+            buth: "Schul- oder Kitabescheinigung, Einkommensnachweis, Personalausweis",
+            eltern: "Geburtsurkunde, Einkommensnachweise, ggf. Arbeitgeberbescheinigung"
+        },
+        no_result: "Nach Ihren Angaben haben Sie derzeit keinen Anspruch auf die genannten Leistungen. Wir empfehlen dennoch eine Rücksprache mit den zuständigen Behörden, da Einzelfallprüfungen möglich sind.",
+        next: "Weiter →",
+        back: "← Zurück",
+        finish: "Ergebnisse anzeigen",
+        share_title: "EasyGov.io | Sozialleistungen in Deutschland",
+        share_text_prefix: "In Deutschland habe ich Anspruch auf ",
+        share_text_suffix: "! Probier es auch:",
+        share_text_fallback: "Ich habe herausgefunden, welche Sozialleistungen mir in Deutschland zustehen. Probier es auch!",
+        feedback: "Feedback senden",
+        share: "Test teilen",
+        recommend: "Freunden empfehlen!",
+        waitlist_title: "Benachrichtigung zum App-Start",
+        waitlist_placeholder: "Ihre E-Mail-Adresse",
+        waitlist_button: "Auf die Liste setzen",
+        waitlist_success: "Vielen Dank! Wir melden uns.",
+        waitlist_error: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        beta_note: "Bald als mobile App — Beta-Liste beitreten"
+    },
+    en: {
+        title: "Social Benefits Guide in Germany",
+        desc: "Find out which social benefits you may be entitled to. 5 minutes to results.",
+        start: "Start",
+        lang_choose: "Select Language",
+        questions: [
+            { text: "Do you reside in Germany?", type: "yesno", benefit: "all" },
+            { text: "Is your monthly net income below €1,000?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Are you unemployed or limited in your ability to work?", type: "yesno", benefit: "bürgergeld" },
+            { text: "Do you want to apply for housing benefit (Wohngeld)? (high rent)", type: "yesno", benefit: "wohngeld" },
+            { text: "Do you have children under 18?", type: "yesno", benefit: "kindergeld" },
+            { text: "Do you want to apply for education and participation support for your child?", type: "yesno", benefit: "buth" },
+            { text: "Are you pregnant or have a child under 3?", type: "yesno", benefit: "eltern" }
+        ],
+        results: {
+            bürgergeld: "Bürgergeld (Unemployment Benefit II)",
+            wohngeld: "Wohngeld (Housing Benefit)",
+            kindergeld: "Child Benefit",
+            buth: "Education and Participation (BuT)",
+            eltern: "Parental Allowance / Maternity Benefit"
+        },
+        docs: {
+            bürgergeld: "ID, registration certificate, proof of income, rental contract, bank details",
+            wohngeld: "ID, rental contract, proof of income, household size",
+            kindergeld: "Birth certificate, ID, bank details",
+            buth: "School/kindergarten certificate, proof of income, ID",
+            eltern: "Birth certificate, proof of income, employer statement (if applicable)"
+        },
+        no_result: "Based on your answers, you may not currently qualify for the listed benefits. However, we recommend contacting the relevant authorities.",
+        next: "Next →",
+        back: "← Back",
+        finish: "Show Results",
+        share_title: "EasyGov.io | Social Benefits in Germany",
+        share_text_prefix: "In Germany, I am entitled to ",
+        share_text_suffix: "! Try it too:",
+        share_text_fallback: "I found out which social benefits I qualify for in Germany. Try it too!",
+        feedback: "Send Feedback",
+        share: "Share Test",
+        recommend: "Recommend to friends!",
+        waitlist_title: "Get notified when the app launches",
+        waitlist_placeholder: "Your email address",
+        waitlist_button: "Join Waitlist",
+        waitlist_success: "Thank you! We'll be in touch.",
+        waitlist_error: "Please enter a valid email address.",
+        beta_note: "Mobile app coming soon — join the beta list"
+    }
 };
-var MODULE_ICONS = ["🧭","🧠","🎯","⚖️","🔧","🌿"];
-var MODULE_COLORS = ["#04162E","#1565C0","#2E7D32","#6A1B9A","#E65100","#00695C"];
-
-var QUESTIONS = {
-tr: [
-["Bir işin sonucunda büyük kazanç varsa bile etik değerlerinle çatışıyorsa vazgeçersin.","Çalışma hayatında maddi kazanç ne kadar cazip olursa olsun kişisel değerlerinden ödün vermezsin.","Adaletsiz bir terfi süreci gördüğünde sessiz kalmak yerine hakkı savunursun.","Yalan söyleyerek elde edilen bir başarı seni tatmin etmez.","Kendi hatanı kabul etmek başkasını suçlamaktan daha doğal gelir sana.","Güven duygusu bir iş ilişkisinde maaştan daha belirleyicidir.","Bir yöneticinin yanlış kararını yüzüne söyleyebilirsin.","İş hayatında 'herkes yapıyor' gerekçesi seni etik dışı davranışa yönlendirmez.","Çalıştığın kurumun değerleri senin kişisel değerlerinle örtüşmek zorundadır.","Bir hatayı örtbas etmek yerine açıkça paylaşmak tercihine uyar.","Başkasının hakkını korumak için kendi çıkarından vazgeçebilirsin.","Şeffaflık uzun vadede her zaman gizlilikten daha iyi sonuç verir.","Toplumsal baskı altında bile kendi değerlerinle çelişen kararlar almazsın.","Bir karar alırken 'bu doğru mu?' sorusunu 'bu kazandırır mı?' sorusundan önce sorarsın.","Onurlu bir yaşam için daha az kazanmayı kabul edebilirsin."],
-["Karmaşık bir problemi çözerken önce parçalara ayırırsın.","Bir kriz anında hızlı ve isabetli karar verebilirsin.","Sayısal verilerle çalışmak sana yük değil bulmaca gibi gelir.","Teknolojik değişimlere hızla uyum sağlarsın.","Uzun vadeli sonuçları kısa vadeli kazançların önünde tutarsın.","Eleştirel düşünme becerin günlük hayatında da aktif olarak çalışır.","Belirsizlik içeren durumlarda mantıklı tahminler yaparak ilerlersin.","Zaman baskısı altında bile sistemli düşünme alışkanlığını korursun.","Karmaşık bir konuyu başkasına sade bir dille anlatabilirsin.","Kalıpların dışında düşünmek sana zor değil keyifli gelir.","Geri bildirim aldığında bunu kişisel saldırı olarak değil gelişim fırsatı olarak görürsün.","Büyük hedefleri küçük adımlara bölmek senin güçlü yönlerindendir.","Farklı disiplinlerden bilgileri bir araya getirerek yeni çözümler üretebilirsin.","Hata yaptığında nedenini analiz etmek seni rahatsız etmez aksine meraklandırır.","Öğrendiğin bilgiyi uygulamaya koymadan önce zihinsel olarak test edersin."],
-["Zamanın nasıl geçtiğini unutacak kadar kendini kaptırdığın bir iş alanı var.","Bir projeyi bitirdiğinde aldığın takdirden çok yarattığın fayda seni tatmin eder.","Rutin işler yerine her gün farklı bir şeyler öğrendiğin işleri tercih edersin.","Ürettiğin bir şeyin somut bir fayda yaratması seni motive eder.","İnsanları yönlendirmek ve ilham vermek sana doğal gelir.","Araştırma yapmak ve yeni bilgi keşfetmek seni mesleki olarak tatmin eder.","Girişimcilik ve yeni bir şey kurma fikri seni heyecanlandırır.","Sağlık ve insan refahıyla ilgili alanlarda çalışmayı anlamlı bulursun.","Teknoloji geliştirmek veya yazılım üretmek ilgi alanların arasındadır.","Eğitim ve bilgi aktarımı odaklı işler sana anlam verir.","Liderlik pozisyonları sorumluluk değil fırsat gibi hissettirir.","Mesleki tatminin için yaptığın işin toplumdaki yansımasını görmen gerekir.","Bir alanda uzman olmak her şeyi biraz bilmekten daha çekici gelir.","Başkalarının gelişimine katkı sağlamak seni mesleki olarak tatmin eder.","Elindeki imkânlar sınırsız olsa yarın sabah yapmak istediğin iş aklına net gelir."],
-["Hak etmediğini düşündüğün bir ödül sana verilse rahatsızlık duyarsın.","Bir işe alımda liyakat tecrübeden daha belirleyici olmalıdır.","Toplumun dezavantajlı kesimlerine yönelik projeler seni heyecanlandırır.","Fırsat eşitsizliğini azaltmak için aktif çaba sarf etmek senin sorumluluk alanındadır.","Çalıştığın sektörün topluma katkısı senin için iş seçiminde belirleyicidir.","Eşit fırsat olmadan performans değerlendirmesinin anlamlı olmadığına inanırsın.","Bir sistemin adaletsiz işlediğini gördüğünde değiştirmek için adım atarsın.","İklim değişikliği ve çevre sorunları mesleki kararlarını etkiler.","Göç ve entegrasyon süreçleri seni hem kişisel hem mesleki olarak ilgilendirir.","Dijital uçurum çözülmesi gereken bir sorun olarak görürsün.","Bir şirketin çalışan refahı hissedar getirisinden önce gelmeli.","Sosyal girişimcilik geleneksel girişimcilikten daha anlamlı gelir sana.","Gelir dağılımındaki adaletsizlik seni hem kişisel hem mesleki olarak rahatsız eder.","Ölçülebilir toplumsal fayda yaratmak kariyerinin temel motivasyon kaynağıdır.","Toplumsal fayda sağlamayan ama çok kazandıran bir meslek sana uygun değildir."],
-["Bir şeyi kendi ellerinle yapıp bitirdiğinde derin bir tatmin duyarsın.","Bozuk bir şeyi tamir etmek sana meydan okuma gibi gelir.","Mobilya kurulumu tamirat gibi işleri yapmaktan keyif alırsın.","Bir aletin nasıl çalıştığını anlamak için kurcalamayı seversin.","Bilgisayar başında oturmaktansa fiziksel bir şey üretmeyi tercih edersin.","Makinelerin nasıl çalıştığını anlamak için kılavuz okumaktan çok elle denersin.","Marangozluk elektrik veya benzeri zanaat dersleri ilgini çeker.","Kendi işinin patronu olma fikri seni heyecanlandırır.","Bir zanaat dalında usta olup kendi atölyeni açmak istersin.","Yeni bir alet veya makine öğrenmek seni heyecanlandırır.","Usta-çırak ilişkisinde öğrenmek senin için idealdir.","Yaptığın işte en küçük detaya kadar özen gösterirsin.","Kalite senin için hızdan daha önemlidir.","Bir ürünün dayanıklılığı için ekstra çaba harcarsın.","İşini gururla imzalayabileceğin kalitede yapmak istersin."],
-["Stresli dönemlerde bile uyku düzenini korumaya özen gösterirsin.","Fiziksel aktivite senin için bir zorunluluk değil bir ihtiyaçtır.","İş-yaşam dengesi senin için müzakere edilemez bir sınırdır.","Duygusal durumunun iş performansını doğrudan etkilediğinin farkındasın.","Beslenme alışkanlıklarının uzun vadeli sağlığını şekillendirdiğine inanırsın.","Yüksek stres altında vücudunun verdiği sinyalleri fark edebilirsin.","Zihinsel sağlık fiziksel sağlık kadar önemlidir.","Düzenli sağlık kontrolü yaptırmak bir önceliğindir.","Kronik hastalıkların büyük çoğunluğunun yaşam tarzıyla ilişkili olduğuna inanırsın.","Dijital ekranlardan uzak zaman geçirmek sana iyi gelir.","Sosyal bağların güçlü olması ruh sağlığı için kritiktir.","Mesleki başarı için sağlıklı olmak temel bir önkoşuldur.","Bir gün içinde kısa molalar verimliliğini artırır.","Kendi sağlığına yatırım yapmak en karlı yatırımdır.","Sağlık okuryazarlığı herkesin sahip olması gereken temel bir beceridir."]
-],
-en: [
-["If a job yields huge profit but conflicts with your ethics, you give it up.","No matter how tempting the financial gain, you don't compromise your values in work life.","When you see an unfair promotion, you stand up for justice instead of staying silent.","Success achieved through lies never satisfies you.","Admitting your own mistake feels more natural than blaming others.","Trust is more decisive than salary in a business relationship.","You can speak up about a manager's wrong decision to their face.","The excuse 'everyone does it' doesn't lead you to unethical behavior.","Your organization's values must align with your personal values.","You prefer to openly share a mistake rather than cover it up.","You can give up your own benefit to protect someone else's right.","Transparency always yields better results than secrecy in the long run.","Even under social pressure, you don't make decisions against your values.","When deciding, you ask 'is this right?' before 'does this profit me?'.","You can accept earning less for an honorable life."],
-["When solving complex problems, you break them down first.","In a crisis, you can make quick and accurate decisions.","Working with numerical data feels like a puzzle, not a burden.","You adapt quickly to technological changes.","You prioritize long-term results over short-term gains.","Your critical thinking skills actively work in daily life.","In uncertain situations, you move forward with logical estimates.","Even under time pressure, you maintain systematic thinking.","You can explain complex topics simply to others.","Thinking outside the box feels enjoyable, not difficult.","When receiving feedback, you see it as a growth opportunity, not a personal attack.","Breaking big goals into small steps is one of your strengths.","You can combine knowledge from different disciplines to create new solutions.","Analyzing why you made a mistake intrigues rather than bothers you.","You mentally test learned knowledge before applying it."],
-["There is a work field you immerse in so deeply that you lose track of time.","When you finish a project, the benefit you create satisfies you more than praise.","You prefer jobs where you learn something new daily over routine tasks.","Producing something that creates tangible benefit motivates you.","Guiding and inspiring people feels natural to you.","Researching and discovering new knowledge gives you professional satisfaction.","Entrepreneurship and starting something new excites you.","You find working in health and human welfare fields meaningful.","Developing technology or software is among your interests.","Education and knowledge transfer oriented work gives you meaning.","Leadership positions feel like opportunities, not burdens.","To feel professional satisfaction, you need to see your work's impact on society.","Becoming an expert in one field is more appealing than knowing a little about everything.","Contributing to others' development gives you professional fulfillment.","If resources were unlimited, you clearly know what you would do tomorrow morning."],
-["If you receive an award you feel you don't deserve, you feel uncomfortable.","In recruitment, merit should be more decisive than experience.","Projects for disadvantaged groups excite you.","Actively working to reduce inequality of opportunity is your responsibility.","Your industry's contribution to society is decisive in your career choice.","You believe performance evaluation is meaningless without equal opportunity.","When you see an unfair system, you take steps to change it.","Climate change and environmental issues affect your career decisions.","Migration and integration processes interest you both personally and professionally.","You see the digital divide as a problem that needs solving.","Employee well-being should come before shareholder returns.","Social entrepreneurship feels more meaningful than traditional entrepreneurship.","Income inequality disturbs you both personally and professionally.","Creating measurable social benefit is a core motivation of your career.","A profession that earns a lot but provides no social benefit is not suitable for you."],
-["When you finish something with your own hands, you feel deep satisfaction.","Fixing something broken feels like a challenge to you.","You enjoy tasks like furniture assembly and repairs.","You love tinkering to understand how a tool works.","You prefer producing something physical over sitting at a computer.","To understand how machines work, you try hands-on rather than reading manuals.","Carpentry, electrical or similar craft courses interest you.","The idea of being your own boss excites you.","You would like to master a craft and open your own workshop.","Learning a new tool or machine excites you.","Learning in a master-apprentice relationship is ideal for you.","You pay attention to every detail in your work.","Quality is more important to you than speed.","You put extra effort into ensuring product durability.","You want to do your work with a quality you can proudly sign."],
-["Even in stressful times, you take care to maintain your sleep routine.","Physical activity is a need, not an obligation for you.","Work-life balance is a non-negotiable boundary for you.","You are aware that your emotional state directly affects your work performance.","You believe eating habits shape your long-term health.","Under high stress, you can notice the signals your body gives.","Mental health is as important as physical health.","Getting regular health check-ups is a priority for you.","You believe the majority of chronic diseases are related to lifestyle.","Spending time away from digital screens makes you feel good.","Strong social connections are critical for mental health.","Being healthy is a fundamental prerequisite for professional success.","Short breaks during the day increase your productivity.","Investing in your own health is the most profitable investment.","Health literacy is a basic skill everyone should have."]
-],
-de: [
-// Modul 1: Charakter & Werte (Sorular 1-15)
-["Sie würden auf eine lukrative berufliche Chance verzichten, wenn diese im Widerspruch zu Ihren persönlichen Werten steht.","Ethische Grundsätze sind für Sie wichtiger als jeder kurzfristige finanzielle Gewinn.","Bei unfairen Beförderungsprozessen in Ihrem Umfeld setzen Sie sich aktiv für Gerechtigkeit ein.","Erfolg, der durch Unwahrheiten erzielt wurde, gibt Ihnen keine persönliche Erfüllung.","Es fällt Ihnen leichter, eigene Fehler einzugestehen, als die Schuld bei anderen zu suchen.","In einer Arbeitsbeziehung ist Ihnen gegenseitiges Vertrauen wichtiger als die bloße Gehaltshöhe.","Sie sprechen Fehlentscheidungen von Führungskräften direkt und sachlich an.","Die Ausrede 'Das machen doch alle' rechtfertigt für Sie kein unethisches Verhalten.","Die Werte Ihrer Organisation müssen zwingend mit Ihren persönlichen Überzeugungen übereinstimmen.","Sie kommunizieren eigene Fehler lieber offen, anstatt sie zu vertuschen.","Sie sind bereit, auf eigene Vorteile zu verzichten, um die Rechte anderer zu schützen.","Transparenz führt Ihrer Meinung nach langfristig immer zu besseren Ergebnissen als Geheimhaltung.","Auch unter starkem sozialen Druck treffen Sie keine Entscheidungen gegen Ihre inneren Werte.","Bei wichtigen Entscheidungen fragen Sie sich zuerst 'Ist das richtig?', bevor Sie fragen 'Bringt das Gewinn?'.","Für ein würdevolles und ehrenhaftes Leben akzeptieren Sie auch ein geringeres Einkommen."],
-// Modul 2: Kognitive Fähigkeiten (Sorular 46-60 tabloda) – bizim M2
-["Bei komplexen Problemen zerlegen Sie die Aufgabenstellung zuerst systematisch in Einzelteile.","In Krisensituationen bewahren Sie Ruhe und treffen schnelle, präzise Entscheidungen.","Die Arbeit mit Zahlen und Daten fühlt sich für Sie wie ein interessantes Rätsel an.","Es fällt Ihnen leicht, sich schnell an technologische Veränderungen anzupassen.","Langfristige Ziele und Strategien sind Ihnen wichtiger als kurzfristige Erfolge.","Kritisches Hinterfragen ist ein fester Bestandteil Ihres Denkprozesses im Alltag.","In unsicheren Situationen stützen Sie sich auf logische Einschätzungen, um voranzukommen.","Auch unter Zeitdruck behalten Sie Ihre systematische Arbeitsweise bei.","Sie besitzen die Fähigkeit, komplexe Themen auch für Laien einfach zu erklären.","Unkonventionelle Lösungen zu finden („Out of the box“), bereitet Ihnen Freude.","Feedback sehen Sie primär als Chance zur Entwicklung, nicht als persönlichen Angriff.","Große Ziele in realistische Teilschritte zu unterteilen, gehört zu Ihren Stärken.","Sie kombinieren Wissen aus verschiedenen Fachbereichen, um neue Lösungen zu generieren.","Die Analyse von Fehlern weckt Ihre Neugier, anstatt Ihnen unangenehm zu sein.","Sie testen neues Wissen gedanklich durch, bevor Sie es in die Praxis umsetzen."],
-// Modul 3: Berufliche Leidenschaft (Sorular 61-75 tabloda) – bizim M3
-["Es gibt Tätigkeitsfelder, bei denen Sie völlig das Zeitgefühl verlieren.","Bei abgeschlossenen Projekten motiviert Sie der erreichte Nutzen mehr als äußeres Lob.","Sie bevorzugen eine Arbeit, bei der Sie jeden Tag etwas Neues dazulernen können.","Die Schaffung eines konkreten Mehrwerts ist Ihr größter Antrieb.","Es fällt Ihnen leicht, andere Menschen zu führen und zu inspirieren.","Das Forschen und Entdecken neuer Erkenntnisse gibt Ihnen berufliche Erfüllung.","Unternehmertum und der Aufbau von etwas völlig Neuem begeistern Sie.","Eine Tätigkeit im Gesundheits- oder Sozialwesen empfinden Sie als sehr sinnvoll.","Softwareentwicklung oder technologische Innovationen zählen zu Ihren Kerninteressen.","Wissen zu vermitteln und andere zu bilden, gibt Ihrer Arbeit einen tiefen Sinn.","Führungspositionen betrachten Sie eher als Chance denn als Last.","Für berufliche Zufriedenheit müssen Sie eine positive Wirkung auf die Gesellschaft sehen.","Ein anerkannter Experte in einem Spezialgebiet zu sein, ist für Sie reizvoller als oberflächliches Allgemeinwissen.","Zur persönlichen Entwicklung anderer beizutragen, erfüllt Sie beruflich sehr.","Wenn finanzielle Mittel unbegrenzt wären, wüssten Sie genau, welcher Aufgabe Sie morgen nachgehen würden."],
-// Modul 4: Soziale Ethik & Verantwortung (Sorular 16-30 tabloda) – bizim M4
-["Es würde Ihnen Unbehagen bereiten, eine Auszeichnung anzunehmen, die Sie nicht verdient haben.","Bei Personalentscheidungen sollte die tatsächliche Leistung entscheidender sein als bloße Betriebszugehörigkeit.","Projekte, die benachteiligte gesellschaftliche Gruppen unterstützen, begeistern Sie besonders.","Sie sehen es als Ihre Verantwortung an, aktiv zur Reduzierung von Ungleichheiten beizutragen.","Der gesellschaftliche Beitrag einer Branche ist für Sie ein entscheidendes Kriterium bei der Berufswahl.","Leistungsbewertung ohne echte Chancengleichheit ist in Ihren Augen wertlos.","Wenn Sie Ungerechtigkeit beobachten, ergreifen Sie Maßnahmen, um eine Veränderung herbeizuführen.","Fragen des Klimaschutzes und der Umwelt beeinflussen Ihre beruflichen Entscheidungen maßgeblich.","Themen wie Migration und Integration interessieren Sie sowohl persönlich als auch beruflich.","Die Überbrückung der digitalen Kluft ist ein Problem, das dringend gelöst werden muss.","Das Wohl der Mitarbeiter sollte für ein Unternehmen vor der reinen Aktionärsrendite stehen.","Soziales Unternehmertum halten Sie für sinnvoller als rein traditionelle Geschäftsmodelle.","Die Einkommensungleichheit in der Gesellschaft beunruhigt Sie persönlich und beruflich.","Messbaren sozialen Nutzen zu stiften, ist eine Kernmotivation Ihrer Karriere.","Ein Beruf mit hohem Gehalt, aber ohne gesellschaftlichen Nutzen, kommt für Sie nicht infrage."],
-// Modul 5: Handwerk & Fachkompetenz (Sorular 31-45 tabloda) – bizim M5
-["Wenn Sie etwas mit Ihren eigenen Händen erschaffen, empfinden Sie tiefe Zufriedenheit.","Defekte Gegenstände zu reparieren, sehen Sie als eine willkommene Herausforderung an.","Handwerkliche Tätigkeiten oder der Aufbau von Möbeln bereiten Ihnen Freude.","Sie verstehen ein Werkzeug am besten, indem Sie es direkt in der Praxis ausprobieren.","Sie arbeiten lieber an physischen Objekten als ausschließlich vor dem Computer zu sitzen.","Um Maschinen zu verstehen, experimentieren Sie lieber praktisch, anstatt lange Handbücher zu lesen.","Kurse in Bereichen wie Schreinerei, Elektrik oder Mechanik wecken Ihr Interesse.","Die Vorstellung, Ihr eigener Chef zu sein, begeistert Sie.","Sie haben den Ehrgeiz, ein Handwerk zu meistern und eventuell eine eigene Werkstatt zu führen.","Das Erlernen neuer Werkzeuge oder moderner Maschinen bereitet Ihnen Vergnügen.","Lernen in einer klassischen Meister-Lehrling-Beziehung halten Sie für ideal.","Sie achten bei Ihrer Arbeit penibel auf kleinste Details.","Qualität ist Ihnen bei einem Ergebnis wichtiger als die reine Geschwindigkeit der Umsetzung.","Für die Langlebigkeit eines Produkts investieren Sie gerne zusätzlichen Aufwand.","Sie möchten Arbeit in einer Qualität abliefern, hinter der Sie mit Stolz stehen können."],
-// Modul 6: Wohlbefinden & Lebensqualität (Sorular 76-90 tabloda) – bizim M6
-["Selbst in stressigen Phasen achten Sie konsequent auf Ihren Schlafrhythmus.","Regelmäßige körperliche Bewegung ist für Sie ein Grundbedürfnis, keine Pflicht.","Eine ausgewogene Work-Life-Balance ist für Sie eine unverhandelbare Grenze.","Ihnen ist bewusst, dass Ihre emotionale Verfassung Ihre Arbeitsleistung direkt beeinflusst.","Sie sind davon überzeugt, dass Ernährungsgewohnheiten Ihre langfristige Gesundheit prägen.","Bei starkem Stress nehmen Sie die Signale Ihres Körpers sehr bewusst wahr.","Psychische Gesundheit ist für Sie genauso wichtig wie physische Fitness.","Regelmäßige Gesundheitschecks haben für Sie eine hohe Priorität.","Sie glauben, dass viele chronische Krankheiten direkt mit dem Lebensstil zusammenhängen.","Bewusste Zeiten ohne digitale Bildschirme tun Ihnen spürbar gut.","Starke soziale Bindungen sind für Sie essenziell für die psychische Stabilität.","Eine gute Gesundheit ist für Sie die Grundvoraussetzung für beruflichen Erfolg.","Kurze Pausen während des Arbeitstages steigern Ihre Produktivität messbar.","Investitionen in die eigene Gesundheit halten Sie für die beste aller Investitionen.","Gesundheitskompetenz ist für Sie eine grundlegende Fähigkeit, die jeder besitzen sollte."]
-]
-};
-
-var LIKERT_LABELS = {
-tr: ["Kesinlikle Katılmıyorum","Katılmıyorum","Kararsızım","Katılıyorum","Kesinlikle Katılıyorum"],
-en: ["Strongly Disagree","Disagree","Neutral","Agree","Strongly Agree"],
-de: ["Stimme gar nicht zu","Stimme nicht zu","Unentschieden","Stimme zu","Stimme voll zu"]
-};
-var LIKERT_VALUES = [0, 1.25, 2.5, 3.75, 5];
 
 var lang = "tr";
 var state = "lang";
-var modAnswers = [[],[],[],[],[],[]];
-var curMod = 0;
+var answers = [];
 var curQ = 0;
-var modScores = [0,0,0,0,0,0];
+var benefits = [];
 
 function getView() { return document.getElementById("dynamicView"); }
 
-function render(noScroll) {
-var v = getView();
-if (!v) return;
-if (state === "lang") renderLang(v);
-else if (state === "entry") renderEntry(v);
-else if (state === "module") renderModule(v);
-else if (state === "inter") renderInter(v);
-else if (state === "report") renderReport(v);
-if (!noScroll) window.scrollTo(0, 0);
+function detectLanguage() {
+    var userLang = navigator.language || navigator.userLanguage;
+    if (userLang.indexOf("tr") === 0) return "tr";
+    if (userLang.indexOf("de") === 0) return "de";
+    return "en";
+}
+
+function render() {
+    var v = getView();
+    if (!v) return;
+    if (state === "lang") renderLang(v);
+    else if (state === "quiz") renderQuiz(v);
+    else if (state === "result") renderResult(v);
+    window.scrollTo(0,0);
 }
 
 function renderLang(v) {
-var t = lang === "tr" ? "6 modül, 90 soru ile kariyer profilinizi keşfedin." :
-lang === "de" ? "Entdecken Sie Ihr Karriereprofil mit 6 Modulen, 90 Fragen." :
-"Discover your career profile with 6 modules, 90 questions.";
-var btn = lang === "tr" ? "Başla" : lang === "de" ? "Starten" : "Start";
-v.innerHTML = '<div class="lang-selector">'
-+ '<button class="lang-btn ' + (lang==='tr'?'active':'') + '" onclick="setLang(\'tr\')">🇹🇷 TÜRKÇE</button>'
-+ '<button class="lang-btn ' + (lang==='de'?'active':'') + '" onclick="setLang(\'de\')">🇩🇪 DEUTSCH</button>'
-+ '<button class="lang-btn ' + (lang==='en'?'active':'') + '" onclick="setLang(\'en\')">🇬🇧 ENGLISH</button>'
-+ '</div>'
-+ '<div class="start-card">'
-+ '<h2>🧭 NavigoPro | PACDI</h2>'
-+ '<p>' + t + '</p>'
-+ '<button class="btn-primary" onclick="goEntry()">' + btn + '</button>'
-+ '</div>';
+    var current = texts[lang];
+    var html = '<div class="lang-selector">' +
+        '<button class="lang-btn ' + (lang === 'tr' ? 'active' : '') + '" onclick="setLang(\'tr\')">🇹🇷 TÜRKÇE</button>' +
+        '<button class="lang-btn ' + (lang === 'de' ? 'active' : '') + '" onclick="setLang(\'de\')">🇩🇪 DEUTSCH</button>' +
+        '<button class="lang-btn ' + (lang === 'en' ? 'active' : '') + '" onclick="setLang(\'en\')">🇬🇧 ENGLISH</button>' +
+        '</div>' +
+        '<div class="start-card">' +
+        '<h2>⚖️ ' + current.title + '</h2>' +
+        '<p>' + current.desc + '</p>' +
+        '<button class="btn-primary" onclick="startQuiz()">' + current.start + '</button>' +
+        '</div>';
+    v.innerHTML = html;
 }
 
 function setLang(l) { lang = l; render(); }
-function goEntry() { state = "entry"; render(); }
 
-function renderEntry(v) {
-var title = lang==="tr" ? "Kariyer Değerlendirmesine Hoş Geldiniz" :
-lang==="de" ? "Willkommen zur Karrierebewertung" : "Welcome to Career Assessment";
-var desc = lang==="tr" ? "6 modül, her biri 15 soru. Geri dönüp cevapları değiştirebilirsiniz." :
-lang==="de" ? "6 Module, je 15 Fragen. Sie können zurück und Antworten ändern." :
-"6 modules, 15 questions each. You can go back and change answers.";
-var btn = lang==="tr" ? "Modül 1'e Başla" : lang==="de" ? "Modul 1 starten" : "Start Module 1";
-v.innerHTML = '<div class="start-card"><h2>📋 ' + title + '</h2><p>' + desc + '</p>'
-+ '<button class="btn-primary" onclick="goModule()">' + btn + '</button></div>';
+function startQuiz() {
+    state = "quiz";
+    curQ = 0;
+    answers = [];
+    for (var i = 0; i < texts[lang].questions.length; i++) answers.push(null);
+    benefits = [];
+    render();
 }
 
-function goModule() { curMod = 0; curQ = 0; modAnswers = [[],[],[],[],[],[]]; state = "module"; render(); }
-
-function renderModule(v) {
-var qText = QUESTIONS[lang][curMod][curQ];
-var selVal = modAnswers[curMod][curQ];
-var pct = (curQ / 15) * 100;
-var modName = MODULE_NAMES[lang][curMod];
-var icon = MODULE_ICONS[curMod];
-var isLast = curQ === 14;
-var nextLbl = isLast ? (lang==="tr"?"Modülü Bitir":lang==="de"?"Modul abschliessen":"Finish Module") :
-(lang==="tr"?"İleri →":lang==="de"?"Weiter →":"Next →");
-var backLbl = lang==="tr" ? "← Geri" : lang==="de" ? "← Zurück" : "← Back";
-var modLbl = lang==="tr" ? "Modül " + (curMod+1) + "/6" : "Module " + (curMod+1) + "/6";
-var qLbl = lang==="tr" ? "Soru " + (curQ+1) + " / 15" : "Question " + (curQ+1) + " / 15";
-
-var optsHtml = LIKERT_LABELS[lang].map(function(lbl, idx) {
-    var val = LIKERT_VALUES[idx];
-    var sel = selVal !== undefined && Math.abs(selVal - val) < 0.01;
-    return '<div class="option' + (sel?' selected':'') + '" onclick="selectOpt(' + val + ')">' + lbl + '</div>';
-}).join('');
-
-v.innerHTML = '<div class="module-header">'
-    + '<div style="display:flex;align-items:center;gap:10px">'
-    + '<span class="module-icon">' + icon + '</span>'
-    + '<span class="module-title">' + modName + '</span>'
-    + '</div>'
-    + '<span style="color:#5b7a97;font-size:0.9rem">' + modLbl + '</span>'
-    + '</div>'
-    + '<div class="progress-area"><div class="progress-fill" style="width:' + pct + '%"></div></div>'
-    + '<div class="q-counter">' + qLbl + '</div>'
-    + '<div class="question-text">' + qText + '</div>'
-    + '<div class="options">' + optsHtml + '</div>'
-    + '<div class="nav-buttons">'
-    + '<button class="btn-nav" onclick="goBack()" ' + (curQ===0?'disabled':'') + ' style="' + (curQ===0?'opacity:0.4':'') + '">' + backLbl + '</button>'
-    + '<button class="btn-nav btn-next" onclick="goNext()">' + nextLbl + '</button>'
-    + '</div>'
-    + '<div class="warning" id="warn"></div>';
+function renderQuiz(v) {
+    var t = texts[lang];
+    var q = t.questions[curQ];
+    var currentAnswer = answers[curQ];
+    var total = t.questions.length;
+    var pct = (curQ / total) * 100;
+    var isLast = curQ === total - 1;
+    var nextLabel = isLast ? t.finish : t.next;
+    
+    var optsHtml = '<div class="options">' +
+        '<div class="option' + (currentAnswer === true ? ' selected' : '') + '" onclick="answer(true)">✅ ' + (lang === "tr" ? "Evet" : (lang === "de" ? "Ja" : "Yes")) + '</div>' +
+        '<div class="option' + (currentAnswer === false ? ' selected' : '') + '" onclick="answer(false)">❌ ' + (lang === "tr" ? "Hayır" : (lang === "de" ? "Nein" : "No")) + '</div>' +
+        '</div>';
+    
+    var html = '<div class="progress-area"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
+        '<div class="q-counter">' + (curQ+1) + ' / ' + total + '</div>' +
+        '<div class="question-text">' + q.text + '</div>' +
+        optsHtml +
+        '<div class="nav-buttons">' +
+        '<button class="btn-nav" onclick="prevQuestion()"' + (curQ === 0 ? ' disabled' : '') + '>' + t.back + '</button>' +
+        '<button class="btn-nav btn-next" onclick="nextQuestion()">' + nextLabel + '</button>' +
+        '</div>' +
+        '<div class="warning" id="warn"></div>';
+    v.innerHTML = html;
 }
 
-function selectOpt(val) {
-modAnswers[curMod][curQ] = val;
-render(true);
+function answer(val) {
+    answers[curQ] = val;
+    render();
 }
 
-function goBack() {
-if (curQ > 0) { curQ = curQ - 1; render(); }
+function prevQuestion() {
+    if (curQ > 0) {
+        curQ--;
+        render();
+    }
 }
 
-function goNext() {
-if (modAnswers[curMod][curQ] === undefined) {
-var warn = document.getElementById("warn");
-if (warn) warn.textContent = lang==="tr" ? "Lütfen bir cevap seçin." :
-lang==="de" ? "Bitte wählen Sie eine Antwort." :
-"Please select an answer.";
-return;
-}
-if (curQ === 14) {
-var sum = 0;
-for (var i = 0; i < modAnswers[curMod].length; i++) { sum += modAnswers[curMod][i]; }
-modScores[curMod] = sum / 15;
-state = "inter";
-render();
-} else {
-curQ = curQ + 1;
-render();
-}
-}
-
-function shareApp() {
-var shareTitle = lang==="tr" ? "NavigoPro | Kariyer Testi" :
-                 lang==="de" ? "NavigoPro | Karrieretest" : "NavigoPro | Career Test";
-var shareText = lang==="tr" ? "Kariyer profilini keşfet! 6 modül, 90 soru, ücretsiz." :
-                lang==="de" ? "Entdecke dein Karriereprofil! 6 Module, 90 Fragen, kostenlos." :
-                "Discover your career profile! 6 modules, 90 questions, free.";
-if (navigator.share) {
-    navigator.share({ title: shareTitle, text: shareText, url: "https://www.navigopro.de" });
-} else {
-    navigator.clipboard.writeText("https://www.navigopro.de").then(function() {
-        alert(lang==="tr" ? "Link kopyalandı!" : lang==="de" ? "Link kopiert!" : "Link copied!");
-    }).catch(function() {
-        alert(lang==="tr" ? "Kopyalama başarısız." : lang==="de" ? "Kopieren fehlgeschlagen." : "Copy failed.");
-    });
-}
-}
-
-function renderInter(v) {
-var score = modScores[curMod];
-var msgs = {
-tr: ["Harika ilerliyorsun! 💪","Kendini tanımaya devam et 🌟","Güçlü yönlerin ortaya çıkıyor ✨"],
-de: ["Grossartig! Weiter so 💪","Erkenne dich selbst 🌟","Deine Stärken werden sichtbar ✨"],
-en: ["Great progress! 💪","Keep discovering yourself 🌟","Your strengths are emerging ✨"]
-};
-var msg = msgs[lang][Math.floor(Math.random() * 3)];
-var title = lang==="tr" ? "Modül " + (curMod+1) + " Tamamlandı ✅" :
-lang==="de" ? "Modul " + (curMod+1) + " abgeschlossen ✅" :
-"Module " + (curMod+1) + " Completed ✅";
-var nextBtn = curMod < 5 ?
-(lang==="tr" ? "Modül " + (curMod+2) + "'ye Geç →" : lang==="de" ? "Modul " + (curMod+2) + " starten →" : "Start Module " + (curMod+2) + " →") :
-(lang==="tr" ? "Raporu Görüntüle →" : lang==="de" ? "Bericht anzeigen →" : "View Report →");
-
-v.innerHTML = '<div class="inter-card">'
-    + '<h3>' + title + '</h3>'
-    + '<div class="score-circle" id="animScore">0.0</div>'
-    + '<p class="motivation">' + msg + '</p>'
-    + '<button class="btn-primary" onclick="goNextMod()">' + nextBtn + '</button>'
-    + '</div>';
-
-var animVal = 0;
-var interval = setInterval(function() {
-    var el = document.getElementById("animScore");
-    if (!el) { clearInterval(interval); return; }
-    if (animVal + 0.15 >= score) {
-        el.textContent = score.toFixed(1);
-        clearInterval(interval);
+function nextQuestion() {
+    if (answers[curQ] === null) {
+        var warn = document.getElementById("warn");
+        if (warn) warn.textContent = lang === "tr" ? "Lütfen bir cevap seçin." : (lang === "de" ? "Bitte wählen Sie eine Antwort." : "Please select an answer.");
+        return;
+    }
+    var t = texts[lang];
+    if (curQ === t.questions.length - 1) {
+        benefits = [];
+        for (var i = 0; i < t.questions.length; i++) {
+            var q = t.questions[i];
+            if (answers[i] === true && q.benefit && q.benefit !== "all") {
+                if (benefits.indexOf(q.benefit) === -1) benefits.push(q.benefit);
+            }
+        }
+        if (answers[0] === false) benefits = [];
+        state = "result";
+        render();
     } else {
-        animVal += 0.15;
-        el.textContent = animVal.toFixed(1);
+        curQ++;
+        render();
     }
-}, 20);
 }
 
-function goNextMod() {
-if (curMod < 5) { curMod++; curQ = 0; state = "module"; render(); }
-else { state = "report"; render(); }
-}
-
-function renderReport(v) {
-var avg = 0;
-for (var i = 0; i < modScores.length; i++) { avg += modScores[i]; }
-avg = avg / 6;
-
-var thr = [4.0, 4.0, 4.0, 4.0, 3.5, 4.0];
-var high = [];
-for (var i = 0; i < modScores.length; i++) {
-    if (modScores[i] >= thr[i]) high.push(i);
-}
-
-var profileNames = {
-    tr: ["Etik Lider","Analitik Düşünür","Tutkulu Profesyonel","Sosyal Dönüştürücü","Usta Adayı","Bilinçli Yaşam Savunucusu"],
-    en: ["Ethical Leader","Analytical Thinker","Passionate Professional","Social Transformer","Craft Master Candidate","Conscious Living Advocate"],
-    de: ["Ethische Führungskraft","Analytischer Denker","Leidenschaftlicher Profi","Sozialer Transformator","Meister-Anwärter","Bewusster Lebensadvokat"]
-};
-
-var profileName;
-if (high.length === 1) {
-    profileName = profileNames[lang][high[0]];
-} else if (high.length > 1) {
-    var parts = [];
-    for (var i = 0; i < high.length; i++) { parts.push(MODULE_NAMES[lang][high[i]].split(" ")[0]); }
-    profileName = parts.join(" + ") + (lang==="tr" ? " Bileşik Profili" : lang==="de" ? " Kombiniertes Profil" : " Combined Profile");
-} else {
-    profileName = lang==="tr" ? "Gelişim Odaklı Profil" : lang==="de" ? "Entwicklungsorientiertes Profil" : "Growth-Oriented Profile";
-}
-
-var careerMap = {
-    tr: ["Etik Danışmanlık, Kurumsal Yönetişim","Veri Analizi, Stratejik Planlama","Girişimcilik, Yaratıcı Endüstriler","Sivil Toplum, Kamu Politikası","Ustalık Girişimciliği, Teknik Tasarım","Sağlık Yönetimi, Wellness Koçluğu"],
-    en: ["Ethics Consulting, Corporate Governance","Data Analysis, Strategic Planning","Entrepreneurship, Creative Industries","Civil Society, Public Policy","Craft Entrepreneurship, Technical Design","Health Management, Wellness Coaching"],
-    de: ["Ethikberatung, Corporate Governance","Datenanalyse, Strategische Planung","Unternehmertum, Kreativwirtschaft","Zivilgesellschaft, Öffentliche Politik","Handwerksunternehmertum, Technisches Design","Gesundheitsmanagement, Wellness-Coaching"]
-};
-
-var careers = [];
-if (high.length > 0) {
-    for (var i = 0; i < high.length; i++) { careers.push(careerMap[lang][high[i]]); }
-} else {
-    careers = [careerMap[lang][0], careerMap[lang][1], careerMap[lang][2]];
-}
-while (careers.length < 3) { careers.push(lang==="tr" ? "Danışmanlık, Liderlik Gelişimi" : lang==="de" ? "Beratung, Führungsentwicklung" : "Consulting, Leadership Development"); }
-careers = careers.slice(0, 3);
-
-var barsHtml = modScores.map(function(s, i) {
-    return '<div class="bar-item">'
-        + '<div class="bar-label">' + MODULE_ICONS[i] + ' ' + MODULE_NAMES[lang][i] + '</div>'
-        + '<div class="bar-bg"><div class="bar-fill" data-w="' + (s/5*100).toFixed(0) + '" style="width:0%;background:' + MODULE_COLORS[i] + '"></div></div>'
-        + '<div class="bar-score">' + s.toFixed(1) + '</div>'
-        + '</div>';
-}).join('');
-
-var hwBadge = modScores[4] >= 3.5 ? {
-    icon: "🔧",
-    title: lang==="tr" ? "Usta Adayı Kartı" : (lang==="de" ? "Meister-Anwärter" : "Master Candidate"),
-    desc: lang==="tr" ? "El becerisi ve zanaat alanında güçlü eğilim. Atölye kurma ve teknik tasarımda parlayabilirsiniz." :
-           lang==="de" ? "Starke Neigung zu Handwerk. Können in Werkstattgründung aufblühen." :
-           "Strong inclination for craftsmanship. Can excel in workshop creation and technical design."
-} : null;
-
-var wbBadge = modScores[5] >= 4.0 ? {
-    icon: "🌿",
-    title: lang==="tr" ? "Bilinçli Yaşam Kartı" : (lang==="de" ? "Bewusstes-Leben Karte" : "Conscious Living Card"),
-    desc: lang==="tr" ? "Sağlık ve iyi oluş alanlarında farkındalık yüksek. Wellness ve sağlık yönetiminde doğal bir rehbersiniz." :
-           lang==="de" ? "Hohes Bewusstsein für Gesundheit. Natürlicher Begleiter in Wellness und Gesundheitsmanagement." :
-           "High awareness in health and well-being. A natural guide in wellness and health management."
-} : null;
-
-var specialCardsHtml = "";
-if (hwBadge || wbBadge) {
-    var cardsHtml = "";
-    if (hwBadge) {
-        cardsHtml += '<div class="special-card">'
-            + '<div class="special-card-icon">' + hwBadge.icon + '</div>'
-            + '<div class="special-card-content">'
-            + '<div class="special-card-title">' + hwBadge.title + '</div>'
-            + '<div class="special-card-desc">' + hwBadge.desc + '</div>'
-            + '</div></div>';
+function generateShareText() {
+    var t = texts[lang];
+    if (benefits.length > 0) {
+        var benefitNames = [];
+        for (var i = 0; i < benefits.length; i++) {
+            benefitNames.push(t.results[benefits[i]]);
+        }
+        var listStr = benefitNames.join(", ");
+        return t.share_text_prefix + listStr + t.share_text_suffix;
+    } else {
+        return t.share_text_fallback;
     }
-    if (wbBadge) {
-        cardsHtml += '<div class="special-card">'
-            + '<div class="special-card-icon">' + wbBadge.icon + '</div>'
-            + '<div class="special-card-content">'
-            + '<div class="special-card-title">' + wbBadge.title + '</div>'
-            + '<div class="special-card-desc">' + wbBadge.desc + '</div>'
-            + '</div></div>';
+}
+
+function shareResult() {
+    var t = texts[lang];
+    var shareText = generateShareText();
+    var fullText = shareText + " " + window.location.href;
+    if (navigator.share) {
+        navigator.share({
+            title: t.share_title,
+            text: shareText,
+            url: window.location.href
+        });
+    } else {
+        navigator.clipboard.writeText(fullText).then(function() {
+            alert(lang === "tr" ? "Link kopyalandı!" : (lang === "de" ? "Link kopiert!" : "Link copied!"));
+        }).catch(function() {
+            alert(lang === "tr" ? "Paylaşım başarısız." : (lang === "de" ? "Teilen fehlgeschlagen." : "Sharing failed."));
+        });
     }
-    var cardTitle = lang==="tr" ? "Özel Yetkinlik Kartları" : lang==="de" ? "Besondere Kompetenzkarten" : "Special Competency Cards";
-    specialCardsHtml = '<div class="special-cards-container"><h3>🏅 ' + cardTitle + '</h3>' + cardsHtml + '</div>';
 }
 
-var labels = lang==="tr" ?
-    ["Modül Skorları","PACDI Radar","Ana Profiliniz","PACDI Genel Skor","Önerilen Kariyer Alanları","Geri Bildirim Gönder","Testi Paylaş","Arkadaşlarını da dene!"] :
-    lang==="en" ?
-    ["Module Scores","PACDI Radar","Your Main Profile","PACDI Overall Score","Recommended Career Areas","Send Feedback","Share Test","Recommend to friends!"] :
-    ["Modul-Scores","PACDI Radar","Ihr Hauptprofil","PACDI Gesamtscore","Empfohlene Karrierefelder","Feedback senden","Test teilen","Freunden empfehlen!"];
-
-var careerItems = careers.map(function(c) { return '<li>🎯 ' + c + '</li>'; }).join('');
-
-var feedbackSubject = lang==="tr" ? "NavigoPro%20Geri%20Bildirim" : "NavigoPro%20Feedback";
-
-v.innerHTML = '<div class="report-grid">'
-    + '<div class="bars-container"><h3>📊 ' + labels[0] + '</h3>' + barsHtml + '</div>'
-    + '<div class="radar-container"><h3>🎯 ' + labels[1] + '</h3><canvas id="radarC" width="360" height="360"></canvas></div>'
-    + '<div class="profile-card">'
-    + '<h3>🏆 ' + labels[2] + '</h3>'
-    + '<div class="profile-name">' + profileName + '</div>'
-    + '<div class="profile-score">' + labels[3] + ': <strong>' + avg.toFixed(2) + ' / 5.0</strong></div>'
-    + specialCardsHtml
-    + '<h4>✨ ' + labels[4] + '</h4>'
-    + '<ul class="career-list">' + careerItems + '</ul>'
-    + '</div>'
-    + '<div class="share-section">'
-    + '<p>📣 ' + labels[7] + '</p>'
-    + '<button class="btn-share" onclick="shareApp()">📢 ' + labels[6] + '</button>'
-    + '<div style="margin-top:12px">'
-    + '<a class="btn-feedback" href="mailto:info@navigopro.de?subject=' + feedbackSubject + '">📧 ' + labels[5] + '</a>'
-    + '</div>'
-    + '</div>'
-    + '<div class="footer-note">© 2026 PACDI — navigopro.de · info@navigopro.de<br>TÜRKPATENT Tescil Başvurusu · Lisanslı Değerlendirme Aracı</div>'
-    + '</div>';
-
-setTimeout(function() {
-    document.querySelectorAll(".bar-fill").forEach(function(el) { el.style.width = el.dataset.w + "%"; });
-    drawRadar();
-}, 100);
+function submitWaitlist() {
+    var emailInput = document.getElementById("waitlist-email");
+    if (!emailInput) return;
+    var email = emailInput.value.trim();
+    if (!email || email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+        alert(texts[lang].waitlist_error);
+        return;
+    }
+    var subject = encodeURIComponent("Waitlist: " + email);
+    var body = encodeURIComponent("I would like to join the EasyGov.io waitlist.\nEmail: " + email);
+    window.location.href = "mailto:info@easygov.io?subject=" + subject + "&body=" + body;
+    alert(texts[lang].waitlist_success);
+    emailInput.value = "";
 }
 
-function drawRadar() {
-var canvas = document.getElementById("radarC");
-if (!canvas) return;
-var ctx = canvas.getContext("2d");
-var W = 360, H = 360, cx = W/2, cy = H/2, R = 130;
-canvas.width = W; canvas.height = H;
-var angles = [0,60,120,180,240,300].map(function(d) { return d * Math.PI / 180 - Math.PI/2; });
-var vals = modScores.map(function(s) { return s / 5; });
-
-ctx.clearRect(0, 0, W, H);
-
-for (var lv = 1; lv <= 5; lv++) {
-    ctx.beginPath();
-    angles.forEach(function(a, i) {
-        var r = R * lv / 5;
-        var x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
-        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    });
-    ctx.closePath();
-    ctx.strokeStyle = "#dde3ec";
-    ctx.lineWidth = 1;
-    ctx.stroke();
+function renderResult(v) {
+    var t = texts[lang];
+    var hasBenefits = benefits.length > 0;
+    var benefitsHtml = "";
+    if (hasBenefits) {
+        var listItems = "";
+        for (var i = 0; i < benefits.length; i++) {
+            var b = benefits[i];
+            listItems += '<li><strong>' + t.results[b] + '</strong><br><small>📄 ' + t.docs[b] + '</small></li>';
+        }
+        benefitsHtml = '<ul class="benefit-list">' + listItems + '</ul>';
+    } else {
+        benefitsHtml = '<p>' + t.no_result + '</p>';
+    }
+    
+    var waitlistHtml = '<div class="waitlist-container">' +
+        '<h4>📧 ' + t.waitlist_title + '</h4>' +
+        '<div class="waitlist-form">' +
+        '<input type="email" id="waitlist-email" class="waitlist-input" placeholder="' + t.waitlist_placeholder + '">' +
+        '<button class="btn-waitlist" onclick="submitWaitlist()">' + t.waitlist_button + '</button>' +
+        '</div>' +
+        '</div>';
+    
+    var html = '<div class="result-card">' +
+        '<h3>📋 ' + (lang === "tr" ? "Sonuçlarınız" : (lang === "de" ? "Ihre Ergebnisse" : "Your Results")) + '</h3>' +
+        benefitsHtml +
+        '</div>' +
+        '<div class="share-section">' +
+        '<p>📣 ' + t.recommend + '</p>' +
+        '<button class="btn-share" onclick="shareResult()">📢 ' + t.share + '</button>' +
+        '<div style="margin-top:12px">' +
+        '<a class="btn-feedback" href="mailto:info@easygov.io?subject=EasyGov.io%20Feedback">📧 ' + t.feedback + '</a>' +
+        '</div>' +
+        '</div>' +
+        waitlistHtml +
+        '<div class="disclaimer">' +
+        'ℹ️ ' + (lang === "tr" ? "Bu bilgiler yalnızca bilgilendirme amaçlıdır ve resmi bir başvuru yerine geçmez. Kesin hak durumu için ilgili kurumlarla iletişime geçin." :
+                   lang === "de" ? "Diese Informationen dienen nur zur Orientierung und ersetzen keine offizielle Beratung. Für verbindliche Auskünfte wenden Sie sich bitte an die zuständigen Stellen." :
+                   "This information is for guidance only and does not replace official advice. Please contact the relevant authorities for definitive eligibility.") +
+        '</div>' +
+        '<div class="footer-note">' +
+        '🚀 ' + t.beta_note + '<br>' +
+        '© 2026 PACDI — easygov.io · info@easygov.io<br>' +
+        'Datenschutzfreundlich · Keine Speicherung personenbezogener Daten' +
+        '</div>';
+    v.innerHTML = html;
 }
 
-angles.forEach(function(a) {
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(cx + R * Math.cos(a), cy + R * Math.sin(a));
-    ctx.strokeStyle = "#dde3ec";
-    ctx.stroke();
-});
-
-ctx.beginPath();
-vals.forEach(function(v, i) {
-    var x = cx + R * v * Math.cos(angles[i]);
-    var y = cy + R * v * Math.sin(angles[i]);
-    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-});
-ctx.closePath();
-ctx.fillStyle = "rgba(4,22,46,0.15)";
-ctx.fill();
-ctx.strokeStyle = "#F6B45F";
-ctx.lineWidth = 2.5;
-ctx.stroke();
-
-vals.forEach(function(v, i) {
-    var x = cx + R * v * Math.cos(angles[i]);
-    var y = cy + R * v * Math.sin(angles[i]);
-    ctx.beginPath();
-    ctx.arc(x, y, 5, 0, 2 * Math.PI);
-    ctx.fillStyle = MODULE_COLORS[i];
-    ctx.fill();
-});
-
-ctx.font = "bold 11px system-ui";
-ctx.fillStyle = "#04162E";
-ctx.textAlign = "center";
-ctx.textBaseline = "middle";
-angles.forEach(function(a, i) {
-    var lx = cx + (R + 20) * Math.cos(a);
-    var ly = cy + (R + 20) * Math.sin(a);
-    ctx.fillText(MODULE_ICONS[i], lx, ly);
-});
-}
-
+lang = detectLanguage();
+state = "lang";
 document.addEventListener("DOMContentLoaded", render);
 </script>
 </body>
